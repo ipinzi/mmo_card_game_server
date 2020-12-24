@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Websocket Tester</title>
+    <script>
+
+        // Create WebSocket connection.
+        const socket = new WebSocket('ws://localhost:4000');
+
+        // Connection opened
+        socket.addEventListener('open', function (event) {
+            let dataPacket = {cmd: '',data: {dataOne: 'Hello Server!'}}
+            let registerDataPacket = {cmd: 'register',data: {user: 'ben', email: 'ben@ben.ben',  pass: 'dragonbz'}}
+            let loginDataPacket = {cmd: 'login', data: {user: 'ben', pass: 'dragonbz'}}
+
+            let jsonStringDataPacket = JSON.stringify(loginDataPacket);
+            socket.send(jsonStringDataPacket);
+        });
+
+        // Listen for messages
+        socket.addEventListener('message', function (event) {
+            console.log('Server: ', event.data);
+        });
+
+    </script>
+</head>
+<body>
+    <h1>Listening for websocket server at ws://localhost:4000</h1>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "card_mmo_server",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "mongodb": "^3.6.3",
+    "node": "^15.4.0",
+    "ws": "^7.4.1"
+  }
+}
