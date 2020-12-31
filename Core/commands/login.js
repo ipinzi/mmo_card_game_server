@@ -2,6 +2,7 @@ import Command from "./command.js";
 import Database from "../database.js";
 import Encryption from "../encryption.js";
 import WebsocketManager from "../websocket.js";
+import Game from "../game.js";
 
 class Login extends Command{
     constructor() {
@@ -10,22 +11,22 @@ class Login extends Command{
     }
     RunCommand(ws,data){
 
-        let wsManager = new WebsocketManager();
+        let client = WebsocketManager.clients[ws.id];
         let me = this;
-        this.LogInUser(data.user,data.pass,(success, loginData)=>{
+        this.LogInUser(ws, data.username,data.password,(success, loginData)=>{
             console.log('User Login: '+loginData.message);
             if(success){
-                console.log('User Logged in: '+data.username);
-
-                wsManager.SendData(ws,{cmd: me.cmd, success: success, message: loginData.message, username: loginData.username});
+                console.log('User Logged in: '+loginData.username);
+                client.username = loginData.username;
+                WebsocketManager.SendData(ws,{cmd: me.cmd, success: success, message: loginData.message, username: loginData.username});
                 return true;
             }else{
-                wsManager.SendData(ws,{cmd: me.cmd, success: success, message: loginData.message});
+                WebsocketManager.SendData(ws,{cmd: me.cmd, success: success, message: loginData.message});
                 return false;
             }
         });
     }
-    LogInUser(user,pass,callbackFunc){
+    LogInUser(ws, user, pass, callbackFunc){
         if(user == ""){
             callbackFunc(false,{message:"User cannot be empty."});
             return;
@@ -53,6 +54,8 @@ class Login extends Command{
                     encrypt.ComparePassword(pass,res.pass,function(err,isPasswordMatch){
                         if (err) throw err;
                         if(isPasswordMatch){
+
+                            Game.SpawnPlayer(ws);
                             callbackFunc(true,{message:"Successfully Logged in!", username: res.username });
                             conn.close();
                             return;

@@ -16,6 +16,5 @@ class Command {
         console.log("Trying to run an empty command!");
         return true;
     }
-
 }
 export default Command;

@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="88f6fe12-b9d9-48d5-adf4-708bc1d4c194" name="Default Changelist" comment="" />
+    <list default="true" id="88f6fe12-b9d9-48d5-adf4-708bc1d4c194" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Core/commands/position.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Core/game.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Core/players.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Core/serverCommands.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Core/util.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/commandInterpreter.js" beforeDir="false" afterPath="$PROJECT_DIR$/Core/commandInterpreter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/commandList.js" beforeDir="false" afterPath="$PROJECT_DIR$/Core/commandList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/commands/command.js" beforeDir="false" afterPath="$PROJECT_DIR$/Core/commands/command.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/commands/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/Core/commands/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/commands/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/Core/commands/register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/debugger.js" beforeDir="false" afterPath="$PROJECT_DIR$/Core/debugger.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/websocket.js" beforeDir="false" afterPath="$PROJECT_DIR$/Core/websocket.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socketTester.html" beforeDir="false" afterPath="$PROJECT_DIR$/socketTester.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,7 +31,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1m4NkuxPOa1qDrdFmnrIXfRkokX" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -58,11 +79,25 @@
       <updated>1608749050236</updated>
       <workItem from="1608749058452" duration="1221000" />
       <workItem from="1608751147941" duration="12065000" />
-      <workItem from="1608782561846" duration="5133000" />
+      <workItem from="1608782561846" duration="6637000" />
+      <workItem from="1608823783378" duration="9997000" />
+      <workItem from="1609267101930" duration="36680000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

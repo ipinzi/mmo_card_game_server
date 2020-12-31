@@ -1,10 +1,9 @@
 import Config from "../card_mmo_server/config.js";
-import Debugger from "./Core/debugger.js";
+import Debug from "./Core/debugger.js";
 import WebsocketManager from "./Core/websocket.js";
+import ServerCommands from "./Core/serverCommands.js";
 
-const Debug = new Debugger();
-const wsManager = new WebsocketManager();
-wsManager.StartServer();
+WebsocketManager.StartServer();
 
 Debug.Log("======================================","green");
 Debug.Log(Config.server_name+" Started!","green","underline");

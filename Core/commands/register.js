@@ -11,11 +11,10 @@ class Register extends Command{
 
     RunCommand(ws, data) {
 
-        let wsManager = new WebsocketManager();
         let me = this;
-        this.RegisterUser(data.email,data.user,data.pass,function(success,message){
+        this.RegisterUser(data.email,data.username,data.password,function(success,message){
             console.log('User Registration: '+message);
-            wsManager.SendData(ws,{cmd: me.cmd, success: success, message: message});
+            WebsocketManager.SendData(ws,{cmd: me.cmd, success: success, message: message});
         });
     }
 

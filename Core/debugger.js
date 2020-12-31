@@ -1,4 +1,4 @@
-class Debugger{
+class Debug{
     Log(message,color,feature){
 
         let feat = '';
@@ -74,4 +74,4 @@ class Debugger{
         BgWhite = "\x1b[47m"*/
     }
 }
-export default Debugger;
+export default(new Debug);

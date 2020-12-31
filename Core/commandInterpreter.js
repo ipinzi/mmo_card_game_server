@@ -1,9 +1,9 @@
-import * as Commands from './CommandList.js';
+import * as CommandList from './CommandList.js';
 
 class CommandInterpreter {
     constructor(engine) {
         this.engine = engine;
-        this.modules = Commands.Commands;
+        this.modules = CommandList.Commands;
         this.commands = [];
 
         for(let i=0;i<this.modules.length;i++){
