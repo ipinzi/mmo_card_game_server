@@ -9,7 +9,12 @@ const Util = new Utility();
 
 class WebsocketManager{
 
-    StartServer(){
+    StartServer(debugMode = false){
+        this.debugMode = debugMode;
+
+        Debug.Log("======================================", "yellow");
+        Debug.Log("Debug Mode is ON","yellow","bold");
+
         const wss = new WebSocket.Server({ port: Config.port });
 
         this.clients = [];
@@ -55,7 +60,7 @@ class WebsocketManager{
         }catch{
             Debug.Log('Client message is not a JSON object.','red')
         }
-        //Debug.Log('client: '+ message, 'yellow', 'dim');
+        if(this.debugMode) Debug.Log('client: '+ message, 'yellow', 'dim');
 
         let cmdInterpreter = new CommandInterpreter();
         cmdInterpreter.InterpretCommand(ws, msg.cmd, msg.data);

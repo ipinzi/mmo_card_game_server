@@ -11,7 +11,7 @@ class ServerCommands{
         standard_input.setEncoding('utf-8');
 
         // Prompt user to input data in console.
-        if(showPrompt) Debug.Log("Command Line input now operational.",'yellow','bold');
+        if(showPrompt) Debug.Log("Type /help to see list of commands.",'yellow','bold');
 
         // When user input data and click enter key.
         standard_input.on('data', function (data) {

@@ -3,7 +3,7 @@ import Debug from "./Core/debugger.js";
 import WebsocketManager from "./Core/websocket.js";
 import ServerCommands from "./Core/serverCommands.js";
 
-WebsocketManager.StartServer();
+WebsocketManager.StartServer(true);
 
 Debug.Log("======================================","green");
 Debug.Log(Config.server_name+" Started!","green","underline");
