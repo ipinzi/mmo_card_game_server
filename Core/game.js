@@ -13,7 +13,7 @@ class Game{
         this.playerManager.LoadPlayerData(ws,(success, data) => {
 
             let client = WebsocketManager.clients[ws.id];
-            if(success){#
+            if(success){
                 client.position = data.position;
                 client.zone = data.zone;
             }else{

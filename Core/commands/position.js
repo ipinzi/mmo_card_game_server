@@ -19,7 +19,7 @@ class Position extends Command{
 
         let newData = {
             cmd: "pos",
-            id: ws.id,
+            id: ws.id/,
             position: client.position
         };
 
