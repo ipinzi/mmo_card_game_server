@@ -37,6 +37,7 @@ class WebsocketManager{
         //on connection add client to list
         ws.id = this.uniqueId();
         this.clients[ws.id] = ws;
+        this.clients[ws.id].id = ws.id;
     }
     HandleDisconnect(ws){
         let user = "Guest";
@@ -54,7 +55,7 @@ class WebsocketManager{
         }catch{
             Debug.Log('Client message is not a JSON object.','red')
         }
-        Debug.Log('client: '+ message, 'yellow', 'dim');
+        //Debug.Log('client: '+ message, 'yellow', 'dim');
 
         let cmdInterpreter = new CommandInterpreter();
         cmdInterpreter.InterpretCommand(ws, msg.cmd, msg.data);

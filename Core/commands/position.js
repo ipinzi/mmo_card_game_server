@@ -17,10 +17,11 @@ class Position extends Command{
             z: data.z
         }
 
-        let newData = {};
-        newData.cmd = "pos";
-        newData.id = ws.id;
-        newData.position = client.position;
+        let newData = {
+            cmd: "pos",
+            id: ws.id,
+            position: client.position
+        };
 
         WebsocketManager.BroadcastDataZone(ws, newData);
     }

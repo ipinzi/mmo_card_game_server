@@ -13,7 +13,7 @@ class Game{
         this.playerManager.LoadPlayerData(ws,(success, data) => {
 
             let client = WebsocketManager.clients[ws.id];
-            if(success){
+            if(success){#
                 client.position = data.position;
                 client.zone = data.zone;
             }else{
@@ -36,7 +36,7 @@ class Game{
             //tell other clients to spawn this player as a pawn
             WebsocketManager.BroadcastDataZone(ws, {
                 cmd: 'populate',
-                id: ws.id,
+                id: client.id,
                 user: client.username,
                 position: client.position
             });
@@ -49,15 +49,17 @@ class Game{
     }
     PopulateClientsInZone(ws,zone){
         let client = WebsocketManager.clients[ws.id];
-        for(let c of WebsocketManager.zones[zone].clients){
+        let thisZone = WebsocketManager.zones[zone];
+
+        for(let c of thisZone.clients){
 
             if(client == c) continue;
 
             WebsocketManager.SendData(ws, {
                 cmd: 'populate',
-                id: ws.id,
-                user: client.username,
-                position: client.position
+                id: c.id,
+                user: c.username,
+                position: c.position
             });
         }
     }
