@@ -46,6 +46,12 @@ class Game{
         let client = WebsocketManager.clients[ws.id];
         this.playerManager.SavePlayerData(ws);
         WebsocketManager.RemoveClientFromZone(client, client.zone);
+
+        //tell other clients to spawn this player as a pawn
+        WebsocketManager.BroadcastDataZone(ws, {
+            cmd: 'despawn',
+            id: client.id
+        });
     }
     PopulateClientsInZone(ws,zone){
         let client = WebsocketManager.clients[ws.id];
