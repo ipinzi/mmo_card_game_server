@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="88f6fe12-b9d9-48d5-adf4-708bc1d4c194" name="Default Changelist" comment="">
+    <list default="true" id="88f6fe12-b9d9-48d5-adf4-708bc1d4c194" name="Default Changelist" comment="changed some prompt text">
+      <change afterPath="$PROJECT_DIR$/Core/commands/teleport.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/serverCommands.js" beforeDir="false" afterPath="$PROJECT_DIR$/Core/serverCommands.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/game.js" beforeDir="false" afterPath="$PROJECT_DIR$/Core/game.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/websocket.js" beforeDir="false" afterPath="$PROJECT_DIR$/Core/websocket.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,8 +70,16 @@
       <workItem from="1608782561846" duration="6637000" />
       <workItem from="1608823783378" duration="9997000" />
       <workItem from="1609267101930" duration="46734000" />
-      <workItem from="1609606576412" duration="4488000" />
+      <workItem from="1609606576412" duration="10198000" />
     </task>
+    <task id="LOCAL-00001" summary="changed some prompt text">
+      <created>1609627582881</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1609627582881</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -88,5 +96,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="changed some prompt text" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed some prompt text" />
   </component>
 </project>

@@ -21,25 +21,7 @@ class Game{
                 this.CreateNewPlayer(ws);
             }
 
-            WebsocketManager.AddClientToZone(client, client.zone);
-
-            WebsocketManager.SendData(ws, {
-                cmd: 'setUser',
-                id: ws.id,
-                user: client.username,
-                position: client.position,
-                zone: client.zone
-            });
-            //tell this client to spawn other players as pawns
-            this.PopulateClientsInZone(ws, client.zone);
-
-            //tell other clients to spawn this player as a pawn
-            WebsocketManager.BroadcastDataZone(ws, {
-                cmd: 'populate',
-                id: client.id,
-                user: client.username,
-                position: client.position
-            });
+            WebsocketManager.ChangeZone(ws, client.zone, client.position);
         });
     }
     DespawnPlayer(ws){
@@ -52,22 +34,6 @@ class Game{
             cmd: 'despawn',
             id: client.id
         });
-    }
-    PopulateClientsInZone(ws,zone){
-        let client = WebsocketManager.clients[ws.id];
-        let thisZone = WebsocketManager.zones[zone];
-
-        for(let c of thisZone.clients){
-
-            if(client == c) continue;
-
-            WebsocketManager.SendData(ws, {
-                cmd: 'populate',
-                id: c.id,
-                user: c.username,
-                position: c.position
-            });
-        }
     }
 
     CreateNewPlayer(ws) {

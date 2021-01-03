@@ -9,6 +9,7 @@ const Util = new Utility();
 
 class WebsocketManager{
 
+    //
     StartServer(debugMode = false){
         this.debugMode = debugMode;
 
@@ -41,7 +42,8 @@ class WebsocketManager{
         ws.isAlive = true;
         //on connection add client to list
         ws.id = this.uniqueId();
-        this.clients[ws.id] = ws;
+        this.clients[ws.id] = {};
+        this.clients[ws.id].ws = ws;
         this.clients[ws.id].id = ws.id;
     }
     HandleDisconnect(ws){
@@ -72,6 +74,18 @@ class WebsocketManager{
             //console.log(error);
         });
     }
+    BroadcastDataAll(data){
+
+        data = JSON.stringify(data);
+        for(let i in this.clients){
+
+            this.clients[i].send(data, function (error){
+                //if(error) console.log(error+"\r\n"); //Removed message error to stop crashing
+            });
+        }
+    }
+
+    //ZONES
     //broadcast to zone but exclude client (Standard broadcast)
     BroadcastDataZone(ws,data,excludeClient = true){
         data = JSON.stringify(data);
@@ -83,20 +97,10 @@ class WebsocketManager{
             for(let c of thisZone.clients){
 
                 if(excludeClient && c == client) continue;
-                c.send(data, function (error){
+                c.ws.send(data, function (error){
                     //if(error) console.log(error+"\r\n"); //Removed message error to stop crashing
                 });
             }
-        }
-    }
-    BroadcastDataAll(data){
-
-        data = JSON.stringify(data);
-        for(let i in this.clients){
-
-            this.clients[i].send(data, function (error){
-                //if(error) console.log(error+"\r\n"); //Removed message error to stop crashing
-            });
         }
     }
     AddClientToZone = function(client,zone){
@@ -112,10 +116,71 @@ class WebsocketManager{
         this.zones[zone].clients.push(client);
     }
     RemoveClientFromZone = function(client,zone){
+
+        let errorStr = "Tried to remove client from zone that does not exist!";
+        if(this.zones[zone] == null){
+            Debug.Log(errorStr, "red");
+            return;
+        }
+        if(this.zones[zone].clients == null){
+            Debug.Log(errorStr, "red");
+            return;
+        }
         let ind = this.zones[zone].clients.indexOf(client);
-        this.zones[zone].clients.splice(ind, 1);
+        if(ind >= 0) this.zones[zone].clients.splice(ind, 1);
+    }
+    ChangeZone(ws, zone, position){
+        let client = this.clients[ws.id];
+
+        if(client.zone != null){
+            this.RemoveClientFromZone(client, client.zone);
+
+            //tell other clients to despawn this player from zone
+            this.BroadcastDataZone(ws, {
+                cmd: 'despawn',
+                id: client.id
+            });
+        }
+
+        this.AddClientToZone(client, zone);
+        client.position = position;
+
+        this.SendData(ws, {
+            cmd: 'setUser',
+            id: ws.id,
+            user: client.username,
+            position: client.position,
+            zone: client.zone
+        });
+        //tell this client to spawn other players as pawns
+        this.PopulateClientsInZone(ws, client.zone);
+
+        //tell other clients to spawn this player as a pawn
+        this.BroadcastDataZone(ws, {
+            cmd: 'populate',
+            id: client.id,
+            user: client.username,
+            position: client.position
+        });
+    }
+    PopulateClientsInZone(ws,zone){
+        let client = this.clients[ws.id];
+        let thisZone = this.zones[zone];
+
+        for(let c of thisZone.clients){
+
+            if(client == c) continue;
+
+            this.SendData(ws, {
+                cmd: 'populate',
+                id: c.id,
+                user: c.username,
+                position: c.position
+            });
+        }
     }
 
+    //UTIL
     uniqueId = function() {
         return 'id-' + Math.random().toString(36).substr(2, 16);
     };
