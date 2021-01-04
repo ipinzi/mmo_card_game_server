@@ -18,4 +18,4 @@ class Teleport extends Command{
         WebsocketManager.ChangeZone(ws, zone, position);
     }
 }
-export default Position;
+export default Teleport;
