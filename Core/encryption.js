@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 
 class Encryption{
-    EncryptPassword = function(password, callback) {
+    EncryptPassword(password, callback) {
         bcrypt.genSalt(10, function(err, salt) {
             if (err)
                 return callback(err);
@@ -12,7 +12,7 @@ class Encryption{
         });
     };
 
-    ComparePassword = function(plainPass, hashword, callback) {
+    ComparePassword(plainPass, hashword, callback) {
         bcrypt.compare(plainPass, hashword, function(err, isPasswordMatch) {
             return err == null ?
                 callback(null, isPasswordMatch) :

@@ -1,28 +1,75 @@
 import PlayerManager from "./players.js";
 import WebsocketManager from "./websocket.js";
 import Config from "../config.js";
+import CardManager from "./cardManager.js";
 
 class Game{
 
     constructor() {
         this.playerManager = new PlayerManager();
+        this.cardManager = new CardManager();
     }
 
     SpawnPlayer(ws) {
 
         this.playerManager.LoadPlayerData(ws,(success, data) => {
 
+            let firstLogin = false;
+            if(data.position == null && data.zone == null & data.money == null && data.inventory == null){
+                firstLogin = true;
+            }
+
             let client = WebsocketManager.clients[ws.id];
-            if(success){
-                client.position = data.position;
-                client.zone = data.zone;
-            }else{
-                //if we cant load player data for this account that means we are a new player!
-                this.CreateNewPlayer(ws);
+            client.position = this.LoadOrDefault(data.position, Config.start_position);
+            client.zone = this.LoadOrDefault(data.zone, Config.start_zone);
+            client.money = this.LoadOrDefault(data.money, Config.start_money);
+            client.inventory = this.LoadOrDefault(data.inventory, []);
+            client.cards = this.LoadOrDefault(data.cards, []);
+            client.decks = this.LoadOrDefault(data.decks, []);
+
+            if(firstLogin){
+                this.DoNewPlayerStuff(client);
             }
 
             WebsocketManager.ChangeZone(ws, client.zone, client.position);
+            WebsocketManager.SendData(ws,{
+                cmd: "moneyUpdate",
+                money: client.money
+            });
+            WebsocketManager.SendData(ws,{
+                cmd: "cardsUpdate",
+                cards: client.cards
+            });
+            WebsocketManager.SendData(ws,{
+                cmd: "decksUpdate",
+                decks: client.decks
+            });
+            WebsocketManager.SendData(ws,{
+                cmd: "inventoryUpdate",
+                inventory: client.inventory
+            });
         });
+    }
+    LoadOrDefault(data,_default){
+        if(data == null){
+            return _default
+        } else {;
+            return data;
+        }
+    }
+    DoNewPlayerStuff(client){
+        this.cardManager.CardAddToPlayer(client,"922da951-928c-4eb2-b857-177097f7e613");
+
+        let deck1 = this.cardManager.DeckCreate("Deck One");
+        this.cardManager.DeckAddToPlayer(client,deck1);
+        this.cardManager.CardAddToDeck(client,deck1,"922da951-928c-4eb2-b857-177097f7e613");
+        this.cardManager.CardAddToDeck(client,deck1,"922da951-928c-4eb2-b857-177097f7e613");
+        this.cardManager.CardAddToDeck(client,deck1,"922da951-928c-4eb2-b857-177097f7e613");
+
+        let deck2 = this.cardManager.DeckCreate("Deck TWO");
+        this.cardManager.DeckAddToPlayer(client,deck2);
+        this.cardManager.CardAddToDeck(client,deck2,"922da951-928c-4eb2-b857-177097f7e613");
+        this.cardManager.CardAddToDeck(client,deck2,"922da951-928c-4eb2-b857-177097f7e613");
     }
     DespawnPlayer(ws){
         let client = WebsocketManager.clients[ws.id];
@@ -34,12 +81,6 @@ class Game{
             cmd: 'despawn',
             id: client.id
         });
-    }
-
-    CreateNewPlayer(ws) {
-        let client = WebsocketManager.clients[ws.id];
-        client.position = Config.start_position;
-        client.zone = Config.start_zone;
     }
 }
 export default (new Game);

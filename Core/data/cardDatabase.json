@@ -1,0 +1,49 @@
+{
+    "cards": [
+        {
+            "id": "922da951-928c-4eb2-b857-177097f7e613",
+            "cardName": "Infernal Cabbage",
+            "cardText": "",
+            "cardType": "summon",
+            "attack": 0,
+            "defense": 0,
+            "summonType": 5
+        },
+        {
+            "id": "0aef3775-b386-43d0-b80b-94e367bf4e50",
+            "cardName": "Clockwork Owl",
+            "cardText": "",
+            "cardType": "summon",
+            "attack": 0,
+            "defense": 0,
+            "summonType": 0
+        },
+        {
+            "id": "e74868fe-173d-4882-8282-ec92e90bbc88",
+            "cardName": "Item Card",
+            "cardText": "",
+            "cardType": "item",
+            "attack": 0,
+            "defense": 0,
+            "summonType": 0
+        },
+        {
+            "id": "69492dbf-cbf8-442b-b1f4-dcbe459c903d",
+            "cardName": "New Test Equipment Card",
+            "cardText": "",
+            "cardType": "equipment",
+            "attack": 0,
+            "defense": 0,
+            "summonType": 0
+        },
+        {
+            "id": "fee16ff9-e510-4d26-8fda-3f194a9ac00e",
+            "cardName": "Another Item",
+            "cardText": "",
+            "cardType": "item",
+            "attack": 0,
+            "defense": 0,
+            "summonType": 0
+        }
+    ]
+}

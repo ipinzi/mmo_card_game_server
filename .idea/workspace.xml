@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="88f6fe12-b9d9-48d5-adf4-708bc1d4c194" name="Default Changelist" comment="small update to architecture and zoning">
+    <list default="true" id="88f6fe12-b9d9-48d5-adf4-708bc1d4c194" name="Default Changelist" comment="zoning complete, teleport command added">
+      <change afterPath="$PROJECT_DIR$/Core/cardManager.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Core/data/cardDatabase.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/commandList.js" beforeDir="false" afterPath="$PROJECT_DIR$/Core/commandList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/commands/teleport.js" beforeDir="false" afterPath="$PROJECT_DIR$/Core/commands/teleport.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/encryption.js" beforeDir="false" afterPath="$PROJECT_DIR$/Core/encryption.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/game.js" beforeDir="false" afterPath="$PROJECT_DIR$/Core/game.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/players.js" beforeDir="false" afterPath="$PROJECT_DIR$/Core/players.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +45,11 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Dropbox\BeastPC\MMO_CardGame\Server\card_mmo_server\Core\data" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="start" type="js.build_tools.npm" temporary="true">
       <package-json value="$PROJECT_DIR$/package.json" />
@@ -69,7 +80,7 @@
       <workItem from="1608782561846" duration="6637000" />
       <workItem from="1608823783378" duration="9997000" />
       <workItem from="1609267101930" duration="46734000" />
-      <workItem from="1609606576412" duration="13629000" />
+      <workItem from="1609606576412" duration="32218000" />
     </task>
     <task id="LOCAL-00001" summary="changed some prompt text">
       <created>1609627582881</created>
@@ -85,7 +96,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609708690468</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="zoning complete, teleport command added">
+      <created>1609718491278</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1609718491278</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -106,6 +124,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="changed some prompt text" />
     <MESSAGE value="small update to architecture and zoning" />
-    <option name="LAST_COMMIT_MESSAGE" value="small update to architecture and zoning" />
+    <MESSAGE value="zoning complete, teleport command added" />
+    <option name="LAST_COMMIT_MESSAGE" value="zoning complete, teleport command added" />
   </component>
 </project>

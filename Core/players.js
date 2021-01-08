@@ -9,14 +9,14 @@ class PlayerManager{
     }
 
     //Saving and loading player data
-    SavePlayerData = function(ws){
+    SavePlayerData(ws){
         this.conn.Query(function(db,conn){
 
             let client = WebsocketManager.clients[ws.id];
             let user = client.username;
             let key = { username: user };
 
-            let value = { $set: {username: user, position: client.position, zone: client.zone} };
+            let value = { $set: {username: user, position: client.position, zone: client.zone, inventory: client.inventory, cards: client.cards, decks: client.decks} };
             db.collection("characters").updateOne(key, value,{upsert: true}, function(err, res) {
                 if (err) throw err;
                 Debug.Log("Player data saved for player: "+client.username, "cyan");
@@ -24,7 +24,7 @@ class PlayerManager{
             });
         });
     }
-    LoadPlayerData = function(ws,callbackFunc){
+    LoadPlayerData(ws,callbackFunc){
         this.conn.Query(function(db,conn){
 
             let client = WebsocketManager.clients[ws.id];
@@ -44,6 +44,5 @@ class PlayerManager{
             });
         });
     }
-
 }
 export default PlayerManager
