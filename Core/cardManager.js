@@ -1,9 +1,9 @@
-import WebsocketManager from "./websocket.js";
+import ArrogantUtil from "./util.js";
 import fs from 'fs';
 import path from 'path';
 const __dirname = path.resolve();
 
-let rawCardData = fs.readFileSync(__dirname + '\\Core\\data\\cardDatabase.json');
+let rawCardData = fs.readFileSync(__dirname + '\\data\\cardDatabase.json');
 const CardDB = JSON.parse(rawCardData);
 
 class CardManager{

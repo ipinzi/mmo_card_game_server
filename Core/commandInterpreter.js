@@ -14,7 +14,7 @@ class CommandInterpreter {
         for(let i=0;i<this.commands.length;i++){
             if(this.commands[i].TryRunCommand(ws, cmd, data)) return true;
         }
-        console.log('That is not a valid command.');
+        console.log('The command "'+cmd+'" is not a valid command.');
     }
 }
 export default CommandInterpreter;

@@ -2,6 +2,7 @@ import PlayerManager from "./players.js";
 import WebsocketManager from "./websocket.js";
 import Config from "../config.js";
 import CardManager from "./cardManager.js";
+import QuestManager from "./questManager.js";
 
 class Game{
 
@@ -10,6 +11,7 @@ class Game{
         this.cardManager = new CardManager();
     }
 
+    //Spawns a new player (on login)
     SpawnPlayer(ws) {
 
         this.playerManager.LoadPlayerData(ws,(success, data) => {
@@ -26,6 +28,7 @@ class Game{
             client.inventory = this.LoadOrDefault(data.inventory, []);
             client.cards = this.LoadOrDefault(data.cards, []);
             client.decks = this.LoadOrDefault(data.decks, []);
+            client.quests = this.LoadOrDefault(data.quests, []);
 
             if(firstLogin){
                 this.DoNewPlayerStuff(client);
@@ -48,12 +51,15 @@ class Game{
                 cmd: "inventoryUpdate",
                 inventory: client.inventory
             });
+
+            let questMan = new QuestManager();
+            questMan.SendQuestDataToClient(ws,client,"refresh");
         });
     }
     LoadOrDefault(data,_default){
         if(data == null){
-            return _default
-        } else {;
+            return _default;
+        } else {
             return data;
         }
     }
@@ -71,6 +77,7 @@ class Game{
         this.cardManager.CardAddToDeck(client,deck2,"922da951-928c-4eb2-b857-177097f7e613");
         this.cardManager.CardAddToDeck(client,deck2,"922da951-928c-4eb2-b857-177097f7e613");
     }
+    //Tells all other clients to despawn the player
     DespawnPlayer(ws){
         let client = WebsocketManager.clients[ws.id];
         this.playerManager.SavePlayerData(ws);

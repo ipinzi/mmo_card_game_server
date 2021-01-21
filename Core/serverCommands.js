@@ -1,5 +1,6 @@
 import WebsocketManager from "./websocket.js";
 import Debug from "./debugger.js";
+import ArrogantUtility from "./util.js";
 
 class ServerCommands{
 
@@ -18,13 +19,16 @@ class ServerCommands{
 
             data = data.replace(/(\r\n|\n|\r)/gm, "");
 
+            Debug.Log(data,'red');
+
             switch(data){
 
                 case '/commands':
                 case '/help':
                     Debug.Log("==Help Requested==",'magenta','bold');
-                    Debug.Log("/exit OR /shutdown",'blue','bold');
+                    Debug.Log("/exit OR /shutdown - shut down server",'blue','bold');
                     Debug.Log("/test",'blue','bold');
+                    Debug.Log("/logmem - log server memory usage",'blue','bold');
                     Debug.Log("===============================",'magenta','bold');
                     break;
 
@@ -36,7 +40,7 @@ class ServerCommands{
                 case '/zones':
                     Debug.Log("Zones",'magenta','bold');
                     WebsocketManager.zones.forEach((zone,ind)=>{
-                       Debug.Log("Zone: "+ind,'magenta');
+                       Debug.Log("Zone: "+ind,'blue','bold');
                        if(zone.clients != null){
                            zone.clients.forEach((client,ind)=>{
                                Debug.Log(client.username,'cyan');
@@ -44,11 +48,13 @@ class ServerCommands{
                        }
                     });
                     break;
+                case '/logmem':
+                    ArrogantUtility.LogMemoryUsage();
+                    break;
 
                 case '/test':
                     Debug.Log("Test command executed!",'magenta','bold');
                     break;
-
                 default:
                     Debug.Log('Command ' + data + ' not recognised, please try again.','red','bold');
                     break;

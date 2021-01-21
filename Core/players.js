@@ -16,7 +16,7 @@ class PlayerManager{
             let user = client.username;
             let key = { username: user };
 
-            let value = { $set: {username: user, position: client.position, zone: client.zone, inventory: client.inventory, cards: client.cards, decks: client.decks} };
+            let value = { $set: {username: user, position: client.position, zone: client.zone, inventory: client.inventory, cards: client.cards, decks: client.decks, quests: client.quests} };
             db.collection("characters").updateOne(key, value,{upsert: true}, function(err, res) {
                 if (err) throw err;
                 Debug.Log("Player data saved for player: "+client.username, "cyan");

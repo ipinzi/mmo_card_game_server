@@ -2,14 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88f6fe12-b9d9-48d5-adf4-708bc1d4c194" name="Default Changelist" comment="zoning complete, teleport command added">
-      <change afterPath="$PROJECT_DIR$/Core/cardManager.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Core/data/cardDatabase.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Core/commands/questAdd.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Core/questManager.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/encryption.js" beforeDir="false" afterPath="$PROJECT_DIR$/Core/encryption.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/cardManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/Core/cardManager.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/commandInterpreter.js" beforeDir="false" afterPath="$PROJECT_DIR$/Core/commandInterpreter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/commandList.js" beforeDir="false" afterPath="$PROJECT_DIR$/Core/commandList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/data/cardDatabase.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/game.js" beforeDir="false" afterPath="$PROJECT_DIR$/Core/game.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/players.js" beforeDir="false" afterPath="$PROJECT_DIR$/Core/players.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/serverCommands.js" beforeDir="false" afterPath="$PROJECT_DIR$/Core/serverCommands.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/Core/util.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/websocket.js" beforeDir="false" afterPath="$PROJECT_DIR$/Core/websocket.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,6 +27,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -50,8 +57,8 @@
       <recent name="D:\Dropbox\BeastPC\MMO_CardGame\Server\card_mmo_server\Core\data" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="start" type="js.build_tools.npm" temporary="true">
+  <component name="RunManager" selected="npm.test">
+    <configuration name="start" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
@@ -61,11 +68,17 @@
       <envs />
       <method v="2" />
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="npm.start" />
-      </list>
-    </recent_temporary>
+    <configuration name="test" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="test" />
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="npm.start" />
+      <item itemvalue="npm.test" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -80,7 +93,12 @@
       <workItem from="1608782561846" duration="6637000" />
       <workItem from="1608823783378" duration="9997000" />
       <workItem from="1609267101930" duration="46734000" />
-      <workItem from="1609606576412" duration="32218000" />
+      <workItem from="1609606576412" duration="48217000" />
+      <workItem from="1610234911971" duration="773000" />
+      <workItem from="1610303712645" duration="1122000" />
+      <workItem from="1610320486488" duration="596000" />
+      <workItem from="1610405687715" duration="1944000" />
+      <workItem from="1610846315500" duration="13615000" />
     </task>
     <task id="LOCAL-00001" summary="changed some prompt text">
       <created>1609627582881</created>
@@ -126,5 +144,41 @@
     <MESSAGE value="small update to architecture and zoning" />
     <MESSAGE value="zoning complete, teleport command added" />
     <option name="LAST_COMMIT_MESSAGE" value="zoning complete, teleport command added" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/Core/commands/questAdd.js</url>
+          <line>22</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/Core/questManager.js</url>
+          <line>20</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/Core/questManager.js</url>
+          <line>21</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/Core/commands/questAdd.js</url>
+          <line>25</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/Core/questManager.js</url>
+          <line>14</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

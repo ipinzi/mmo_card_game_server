@@ -2,19 +2,18 @@ import WebSocket from "ws";
 import Config from "../config.js";
 import Debug from "./debugger.js";
 import CommandInterpreter from "./commandInterpreter.js";
-import Utility from "./util.js";
+import Util from "./util.js";
 import Game from "./game.js";
-
-const Util = new Utility();
 
 class WebsocketManager{
 
-    //
+    //Starts the websocket server
     StartServer(debugMode = false){
         this.debugMode = debugMode;
-
-        Debug.Log("======================================", "yellow");
-        Debug.Log("Debug Mode is ON","yellow","bold");
+        if(debugMode){
+            Debug.Log("======================================", "yellow");
+            Debug.Log("Debug Mode is ON","yellow","bold");
+        }
 
         const wss = new WebSocket.Server({ port: Config.port });
 
@@ -41,7 +40,7 @@ class WebsocketManager{
 
         ws.isAlive = true;
         //on connection add client to list
-        ws.id = this.uniqueId();
+        ws.id = Util.uniqueId();
         this.clients[ws.id] = {};
         this.clients[ws.id].ws = ws;
         this.clients[ws.id].id = ws.id;
@@ -55,6 +54,7 @@ class WebsocketManager{
         }
         Debug.Log("Client disconnected (User: "+user+" | socket id: "+ws.id+")","red");
     }
+    //Passes incoming messages from the client to commandInterpreter.cs to run logic
     HandleMessage(ws, message){
         let msg = {};
         try{
@@ -68,12 +68,15 @@ class WebsocketManager{
         cmdInterpreter.InterpretCommand(ws, msg.cmd, msg.data);
     }
 
+    //Sends data to a single client
     SendData(ws,data){
-        data = JSON.stringify(data);
-        ws.send(data, (error) => {
+        let strData = JSON.stringify(data);
+        ws.send(strData, (error) => {
             //console.log(error);
         });
     }
+
+    //Broadcasts data to ALL clients on the network
     BroadcastDataAll(data){
 
         data = JSON.stringify(data);
@@ -84,16 +87,28 @@ class WebsocketManager{
             });
         }
     }
+    //Broadcasts data to all clients excluding this client
+    BroadcastData(ws, data){
+
+        data = JSON.stringify(data);
+        for(let i in this.clients){
+            if(i != this.clients[ws.id]){
+                this.clients[i].send(data, function (error){
+                    //if(error) console.log(error+"\r\n"); //Removed message error to stop crashing
+                });
+            }
+        }
+    }
 
     //ZONES
-    //broadcast to zone but exclude client (Standard broadcast)
+    //broadcast to zone, client exclusion can be configured but is off by default
     BroadcastDataZone(ws,data,excludeClient = true){
         data = JSON.stringify(data);
 
         let client = this.clients[ws.id];
         let thisZone = this.zones[client.zone];
 
-        if(Util.IsDefined(thisZone) && Util.IsDefined(thisZone.clients)){
+        if(thisZone != null && thisZone.clients != null){
             for(let c of thisZone.clients){
 
                 if(excludeClient && c == client) continue;
@@ -103,6 +118,8 @@ class WebsocketManager{
             }
         }
     }
+
+    //Adds a client to the zone on the SERVER ONLY
     AddClientToZone = function(client,zone){
 
         if(this.zones[zone] == null){
@@ -115,6 +132,8 @@ class WebsocketManager{
         Debug.Log("Adding client "+client.username+" to zone "+zone, "cyan")
         this.zones[zone].clients.push(client);
     }
+
+    //Removes a client from the zone on the SERVER ONLY
     RemoveClientFromZone = function(client,zone){
 
         let errorStr = "Tried to remove client from zone that does not exist!";
@@ -129,6 +148,8 @@ class WebsocketManager{
         let ind = this.zones[zone].clients.indexOf(client);
         if(ind >= 0) this.zones[zone].clients.splice(ind, 1);
     }
+
+    //Causes a client to move from one zone to another, despawning in the zone they left for all other clients.
     ChangeZone(ws, zone, position){
         let client = this.clients[ws.id];
 
@@ -163,6 +184,30 @@ class WebsocketManager{
             position: client.position
         });
     }
+
+    //Start an instance game with a unique zone identifier
+    //(eg. Instanced zones: id-w627srrpzid / Static zones: 1-99999),
+    //ID is returned so it can be provided by other clients trying to join the same instance
+    StartInstancedGame(client, zoneID=null){
+        if(zoneID == null){
+            zoneID = Util.uniqueId();
+        }
+        if(this.zones[zoneID] == null){
+            this.zones[zoneID] = {};
+        }
+        if(this.zones[zoneID].clients == null){
+            this.zones[zoneID].clients = [];
+        }
+        if(client.zone != null) {
+            client.worldZone = client.zone;
+            this.RemoveClientFromZone(client, client.zone);
+        }
+        this.AddClientToZone(client, this.zones[zoneID]);
+
+        return zoneID;
+    }
+
+    //Tells the client to spawn all other players
     PopulateClientsInZone(ws,zone){
         let client = this.clients[ws.id];
         let thisZone = this.zones[zone];
@@ -179,11 +224,6 @@ class WebsocketManager{
             });
         }
     }
-
-    //UTIL
-    uniqueId = function() {
-        return 'id-' + Math.random().toString(36).substr(2, 16);
-    };
 }
 
 export default (new WebsocketManager);

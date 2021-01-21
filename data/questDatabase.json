@@ -1,0 +1,47 @@
+{
+    "quests": [
+        {
+            "id": "165995e9-44ee-4351-8c7b-919b53f0ca82",
+            "questName": "A New Quest!",
+            "questType": "",
+            "tasks": [
+                {
+                    "id": "523d5092-efb3-41b9-bd22-7840376eb283",
+                    "taskName": "A Brave New Task",
+                    "taskType": "",
+                    "itemRewards": [
+                        "8f6a0e3d-b69f-4095-b4df-be85f7c78f79"
+                    ],
+                    "cardRewards": [
+                        "0aef3775-b386-43d0-b80b-94e367bf4e50",
+                        "922da951-928c-4eb2-b857-177097f7e613"
+                    ]
+                },
+                {
+                    "id": "523d5092-efb3-41b9-bd22-7840376eb283",
+                    "taskName": "A Brave New Task",
+                    "taskType": "",
+                    "itemRewards": [
+                        "8f6a0e3d-b69f-4095-b4df-be85f7c78f79"
+                    ],
+                    "cardRewards": [
+                        "0aef3775-b386-43d0-b80b-94e367bf4e50",
+                        "922da951-928c-4eb2-b857-177097f7e613"
+                    ]
+                },
+                {
+                    "id": "523d5092-efb3-41b9-bd22-7840376eb283",
+                    "taskName": "A Brave New Task",
+                    "taskType": "",
+                    "itemRewards": [
+                        "8f6a0e3d-b69f-4095-b4df-be85f7c78f79"
+                    ],
+                    "cardRewards": [
+                        "0aef3775-b386-43d0-b80b-94e367bf4e50",
+                        "922da951-928c-4eb2-b857-177097f7e613"
+                    ]
+                }
+            ]
+        }
+    ]
+}

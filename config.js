@@ -1,4 +1,5 @@
 const Config = {
+    debug_mode: false,
     server_name: 'Arrogant MMO Card Game Server',
     ip: 'localhost',
     port: process.env.PORT || 4000,
