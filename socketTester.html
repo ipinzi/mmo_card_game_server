@@ -10,10 +10,8 @@
         // Connection opened
         socket.addEventListener('open', function (event) {
             let dataPacket = {cmd: '',data: {dataOne: 'Hello Server!'}}
-            let registerDataPacket = {cmd: 'register',data: {user: 'ben', email: 'ben@ben.ben',  pass: 'dragonbz'}}
-            let loginDataPacket = {cmd: 'login', data: {user: 'ben', pass: 'dragonbz'}}
 
-            let jsonStringDataPacket = JSON.stringify(loginDataPacket);
+            let jsonStringDataPacket = JSON.stringify(dataPacket);
             socket.send(jsonStringDataPacket);
         });
 
